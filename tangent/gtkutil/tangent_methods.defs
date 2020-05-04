@@ -1,0 +1,82 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From gappstate.h
+
+(define-function tangent_appstate_new
+  (c-name "tangent_appstate_new")
+  (is-constructor-of "TangentAppstate")
+  (return-type "TangentAppstate*")
+  (parameters
+  )
+)
+
+(define-method notify_change
+  (of-object "TangentAppstate")
+  (c-name "tangent_appstate_notify_change")
+  (return-type "none")
+)
+
+
+
+;; From panzoomarea.h
+
+(define-function gtk_panzoom_area_new
+  (c-name "gtk_panzoom_area_new")
+  (is-constructor-of "GtkPanzoomArea")
+  (return-type "GtkWidget*")
+  (parameters
+  )
+)
+
+(define-method get_offset
+  (of-object "GtkPanZoomArea")
+  (c-name "gtk_panzoom_area_get_offset")
+  (return-type "none")
+  (parameters
+    '("double" "out[2]")
+  )
+)
+
+(define-method set_offset
+  (of-object "GtkPanZoomArea")
+  (c-name "gtk_panzoom_area_set_offset")
+  (return-type "none")
+  (parameters
+    '("double" "offset[2]")
+  )
+)
+
+(define-method get_scale
+  (of-object "GtkPanZoomArea")
+  (c-name "gtk_panzoom_area_get_scale")
+  (return-type "double")
+)
+
+(define-method set_scale
+  (of-object "GtkPanZoomArea")
+  (c-name "gtk_panzoom_area_set_scale")
+  (return-type "none")
+  (parameters
+    '("double" "scale")
+  )
+)
+
+(define-method get_scale_rate
+  (of-object "GtkPanZoomArea")
+  (c-name "gtk_panzoom_area_get_scale_rate")
+  (return-type "double")
+)
+
+(define-method set_scale_rate
+  (of-object "GtkPanZoomArea")
+  (c-name "gtk_panzoom_area_set_scale_rate")
+  (return-type "none")
+  (parameters
+    '("double" "scale_rate")
+  )
+)
+
+

@@ -1,0 +1,5 @@
+;; Include generated API definition files
+(include tangent_enums.defs)
+(include tangent_methods.defs)
+(include tangent_signals.defs)
+(include tangent_vfuncs.defs)

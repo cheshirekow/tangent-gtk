@@ -1,0 +1,95 @@
+;; From GtkPanZoomArea
+
+(define-signal area-motion
+  (of-object "GtkPanZoomArea")
+  (return-type "gboolean")
+  (flags "Run Last")
+  (parameters
+    '("GdkEventMotion*" "p0")
+  )
+)
+
+(define-signal area-button
+  (of-object "GtkPanZoomArea")
+  (return-type "gboolean")
+  (flags "Run Last")
+  (parameters
+    '("GdkEventButton*" "p0")
+  )
+)
+
+(define-signal area-draw
+  (of-object "GtkPanZoomArea")
+  (return-type "gboolean")
+  (flags "Run Last")
+  (parameters
+    '("CairoContext*" "p0")
+  )
+)
+
+(define-property offset-x-adjustment
+  (of-object "GtkPanZoomArea")
+  (prop-type "GParamObject")
+  (docs "Adjustment defining the x-offset of the viewport")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property offset-y-adjustment
+  (of-object "GtkPanZoomArea")
+  (prop-type "GParamObject")
+  (docs "Adjustment defining the y-offset of the viewport")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property scale-adjustment
+  (of-object "GtkPanZoomArea")
+  (prop-type "GParamObject")
+  (docs "Adjustment defining the scale/zoom level of the viewport by defining the length (in virtual units) of the longest edge.")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property scale-rate-adjustment
+  (of-object "GtkPanZoomArea")
+  (prop-type "GParamObject")
+  (docs "Adjustment defining the multiplier used when changing the scale in response to a button press. Zoom-in will multiply the scale by this value. Zoom-out will divide.")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property active
+  (of-object "GtkPanZoomArea")
+  (prop-type "GParamBoolean")
+  (docs "If true, captures mouse events for pan/zoom. If false, mouse events are passed through.")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "TRUE")
+)
+
+(define-property pan-button
+  (of-object "GtkPanZoomArea")
+  (prop-type "GParamInt")
+  (docs "Which mouse button to monitor for pan tool")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "3")
+)
+
+(define-property demo-draw-enabled
+  (of-object "GtkPanZoomArea")
+  (prop-type "GParamBoolean")
+  (docs "If true, then the default area-draw signal handler will draw some shapes so that there is a point of reference for pan/zoom actions.")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+  (default-value "FALSE")
+)
+

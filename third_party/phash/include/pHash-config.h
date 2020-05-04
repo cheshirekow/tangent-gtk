@@ -1,0 +1,1 @@
+#define HAVE_IMAGE_HASH 1

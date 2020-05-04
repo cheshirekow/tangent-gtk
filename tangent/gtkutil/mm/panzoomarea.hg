@@ -1,0 +1,50 @@
+// clang-format off
+#include <gtkmm/drawingarea.h>
+_DEFS(tangent/gtkutil/mm, tangent)
+_PINCLUDE(gtkmm/private/drawingarea_p.h)
+_PINCLUDE(tangent/gtkutil/mm/private/hack.h)
+// clang-format on
+
+namespace Gtk {
+
+class PanZoomArea : public Gtk::DrawingArea {
+  _CLASS_GTKOBJECT(PanZoomArea, GtkPanZoomArea, GTK_PANZOOM_AREA,
+                   Gtk::DrawingArea, GtkDrawingArea)
+ public:
+  _CTOR_DEFAULT
+
+ public:
+  // _WRAP_METHOD(void get_offset(double offset[2]),
+  // gtk_panzoom_area_set_offset);
+
+  // _WRAP_METHOD(void get_offset(double offset[2]),
+  // gtk_panzoom_area_set_offset);
+
+  _WRAP_METHOD(double get_scale(), gtk_panzoom_area_get_scale);
+  _WRAP_METHOD(void set_scale(double scale), gtk_panzoom_area_set_scale);
+  _WRAP_METHOD(double get_scale_rate(), gtk_panzoom_area_get_scale_rate);
+  _WRAP_METHOD(void set_scale_rate(double rate),
+               gtk_panzoom_area_set_scale_rate);
+
+  // TODO(josh): can't wrap a signal whose default handler has a different
+  // name than the name of the signal.
+  _WRAP_SIGNAL(bool area_motion(GdkEventMotion* event), "area-motion");
+  _WRAP_SIGNAL(bool area_button(GdkEventButton* event), "area-button");
+
+// clang-format off
+#m4 _CONVERSION(`CairoContext*',`const ::Cairo::RefPtr< ::Cairo::Context>&',`::Cairo::RefPtr< ::Cairo::Context>(new ::Cairo::Context($3, false /* has_reference */))')
+#m4 _CONVERSION(`const ::Cairo::RefPtr< ::Cairo::Context>&',`CairoContext*',`($3)->cobj()')
+  _WRAP_SIGNAL(bool area_draw(const ::Cairo::RefPtr< ::Cairo::Context>& cr),
+               "area-draw");
+  // clang-format on
+
+  _WRAP_PROPERTY("offset-x-adjustment", Glib::RefPtr<Gtk::Adjustment>);
+  _WRAP_PROPERTY("offset-y-adjustment", Glib::RefPtr<Gtk::Adjustment>);
+  _WRAP_PROPERTY("scale-adjustment", Glib::RefPtr<Gtk::Adjustment>);
+  _WRAP_PROPERTY("scale-rate-adjustment", Glib::RefPtr<Gtk::Adjustment>);
+  _WRAP_PROPERTY("active", bool);
+  _WRAP_PROPERTY("pan-button", int);
+  _WRAP_PROPERTY("demo-draw-enabled", bool);
+};
+
+}  // namespace Gtk

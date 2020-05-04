@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+NOTE(josh): I'm not sure what the correct install location is for
+Ubuntu. The doc's say to use pkg-config but the command that give
+doesn't work. You can use the environment though to enable this catalog
+like the following (e.g.):
+* GLADE_CATALOG_SEARCH_PATH=~/tangentsky/.build/nd.x86/tangent/gtkutil
+* GLADE_MODULE_SEARCH_PATH=~/tangentsky/.build/nd.x86/tangent/gtkutil
+
+The catalog search path is where glade looks for xml catalog files (this one)
+and the module search path is where it looks for the associated library.
+
+I *think* the system paths on ubuntu 18.04 are:
+* /usr/share/glade/catalogs
+* /usr/lib/x86_64-linux-gnu/glade/modules
+/-->
+<glade-catalog
+    name="tangent-gtk" library="tangent-gtk" version="0.1" depends="gtk+">
+  <!--init-function>tangent_gtk_catalog_init</init-function/-->
+  <glade-widget-classes>
+    <glade-widget-class
+        name="GtkPanZoomArea" generic-name="panzoom" title="Pan Zoom Area"
+        get-type-function="gtk_panzoom_area_get_type"/>
+  </glade-widget-classes>
+  <glade-widget-group name="tangent-gtk" title="Tangent">
+    <glade-widget-class-ref name="GtkPanZoomArea"/>
+  </glade-widget-group>
+</glade-catalog>

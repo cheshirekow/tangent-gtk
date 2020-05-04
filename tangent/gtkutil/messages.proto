@@ -1,0 +1,42 @@
+syntax = "proto3";
+package tangent.proto;
+
+message GdkRGBA {
+  double red = 1;
+  double green = 2;
+  double blue = 3;
+  double alpha = 4;
+};
+
+/// State stored for a panzoom area
+message GtkPanZoomArea {
+  double offset_x = 1;
+  double offset_y = 2;
+  double scale = 3;
+  double scale_rate = 4;
+};
+
+/// Variant representation of a gtk object model.
+message ModelVariant {
+  oneof variant_value {
+    double double_value = 1;
+    bool bool_value = 2;
+    string string_value = 3;
+    GdkRGBA rgba_value = 4;
+    GtkPanZoomArea panzoom_value = 5;
+  };
+};
+
+/// Stores one entry mapping a GtkBuilder name (string) to a serialized
+/// representation of the of the model for that object.
+message UIStateEntry {
+  string class = 1;
+  string name = 2;
+  ModelVariant value = 3;
+};
+
+/// Stores a mapping of GtkBuilder name (string) to a serialized representation
+/// of the stored model for that object.
+message UIState {
+  repeated UIStateEntry entry = 1;
+};

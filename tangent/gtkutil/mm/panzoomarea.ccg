@@ -1,0 +1,4 @@
+#include "tangent/gtkutil/panzoomarea.h"
+
+using CairoContext = cairo_t;
+
